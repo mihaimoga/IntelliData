@@ -1,0 +1,69 @@
+// IntelliDataHandlers.idl : IDL source for IntelliDataHandlers
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (IntelliDataHandlers.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(35954d35-9fab-42c0-be6e-0bf1d895ee20),
+	pointer_default(unique)
+]
+interface IPreview : IUnknown
+{
+};
+
+[
+	object,
+	uuid(03a89138-a515-42d5-8615-4314b4397e9d),
+	pointer_default(unique)
+]
+interface IThumbnail : IUnknown
+{
+};
+
+[
+	object,
+	uuid(38a4bec7-2944-455a-9758-a758e650a152),
+	pointer_default(unique)
+]
+interface ISearch : IUnknown
+{
+};
+
+[
+	uuid(4dd1f0a2-5f67-4d21-a76a-82f71960921b),
+	version(1.0),
+]
+library IntelliDataHandlersLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(ac40b9c8-6950-4e1d-98ca-f62a781ed25c)
+	]
+	coclass Preview
+	{
+		[default] interface IPreviewHandler;
+	};
+	[
+		uuid(f289a3f7-aec7-4e33-8592-bbc0c7626bc0)
+	]
+	coclass Thumbnail
+	{
+		[default] interface IThumbnailProvider;
+	};
+	[
+		uuid(78198bea-96e6-4a11-9d25-1ff0b2d45484)
+	]
+	coclass Search
+	{
+		[default] interface IFilter;
+	};
+};
+
+import "shobjidl.idl";
+import "thumbcache.idl";
+import "filter.idl";
