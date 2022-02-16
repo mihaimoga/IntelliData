@@ -20,7 +20,7 @@ IntelliData.  If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 #endif
 
 #include "resource.h"       // main symbols
-
+#include "sinstance.h"
 
 // CIntelliDataApp:
 // See IntelliData.cpp for the implementation of this class
@@ -31,6 +31,8 @@ class CIntelliDataApp : public CWinAppEx
 public:
 	CIntelliDataApp() noexcept;
 
+public:
+	CInstanceChecker m_pInstanceChecker;
 
 // Overrides
 public:

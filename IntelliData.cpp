@@ -46,7 +46,7 @@ END_MESSAGE_MAP()
 
 // CIntelliDataApp construction
 
-CIntelliDataApp::CIntelliDataApp() noexcept
+CIntelliDataApp::CIntelliDataApp() noexcept : m_pInstanceChecker(_T("IntelliData"))
 {
 	// support Restart Manager
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_ALL_ASPECTS;
@@ -106,6 +106,17 @@ BOOL CIntelliDataApp::InitInstance()
 	// AfxInitRichEdit2() is required to use RichEdit control
 	AfxInitRichEdit2();
 
+	//Check for the previous instance as soon as possible
+	if (m_pInstanceChecker.PreviousInstanceRunning())
+	{
+		CCommandLineInfo cmdInfo;
+		ParseCommandLine(cmdInfo);
+
+		AfxMessageBox(_T("Previous version detected, will now restore it..."), MB_OK | MB_ICONINFORMATION);
+		m_pInstanceChecker.ActivatePreviousInstance(cmdInfo.m_strFileName);
+		return FALSE;
+	}
+
 	// Standard initialization
 	// If you are not using these features and wish to reduce the size
 	// of your final executable, you should remove from the following
@@ -115,7 +126,6 @@ BOOL CIntelliDataApp::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Mihai Moga"));
 	LoadStdProfileSettings(4);  // Load standard INI file options (including MRU)
-
 
 	InitContextMenuManager();
 
@@ -168,6 +178,9 @@ BOOL CIntelliDataApp::InitInstance()
 	// The main window has been initialized, so show and update it
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
+
+	// If this is the first instance of our App then track it so any other instances can find us
+	m_pInstanceChecker.TrackFirstInstanceRunning(m_pMainWnd->GetSafeHwnd());
 
 	return TRUE;
 }
