@@ -6,8 +6,8 @@
 #include <atlhandler.h>
 #include <atlhandlerimpl.h>
 #include <afxext.h>
-#include "..\IntelliData\IntelliDataDoc.h"
-#include "..\IntelliData\IntelliDataView.h"
+#include "..\IntelliDataDoc.h"
+#include "..\IntelliDataView.h"
 #include "IntelliDataHandlers_i.h"
 
 using namespace ATL;

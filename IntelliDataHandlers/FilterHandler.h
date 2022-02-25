@@ -5,7 +5,7 @@
 
 #include <atlhandler.h>
 #include <atlhandlerimpl.h>
-#include "..\IntelliData\IntelliDataDoc.h"
+#include "..\IntelliDataDoc.h"
 #include "IntelliDataHandlers_i.h"
 
 using namespace ATL;
